@@ -41,7 +41,9 @@ const App = () => {
 
     return (
         <>
-            <ButtonState numero={contador} ></ButtonState>
+            <ButtonState numero={contador} 
+            
+            ></ButtonState>
             <h1 className= {classTitulo} > {titulo} </h1>
 
             <img src= {imgRott} alt= {`imagen - ${titulo}`} />
