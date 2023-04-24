@@ -38,16 +38,16 @@ const NoControlado = () => {
         <form ref={form} onSubmit={accionSubmit} className="form-control mt-5">
 
             <input
-              type="text"
-              name="title"
-              placeholder="Ingrese Tarea"
-              className="form-control mb-2"
+            type="text"
+            name="title"
+            placeholder="Ingrese Tarea"
+            className="form-control mb-2"
             />
             
             <textarea
-              className="form-control mb-2"
-              placeholder="Ingrese Descripcion"
-              name="description"
+            className="form-control mb-2"
+            placeholder="Ingrese Descripcion"
+            name="description"
             />
             
             <select className="form-control mb-2" name="state">
@@ -58,10 +58,9 @@ const NoControlado = () => {
             <button type="submit" className="btn btn-success">Procesar</button>
 
             {
-               error !== "" && <p className="mt-5 p-3 border border-danger">{error}</p>
+            error !== "" && <p className="mt-5 p-3 border border-danger">{error}</p>
             }
         </form>
-        
     )
 }
 
