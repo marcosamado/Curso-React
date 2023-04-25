@@ -12,7 +12,7 @@ const Cat = () => {
 
         catSet({ ...cat, edad: cat.edad + 1 });
 
-        catSet((prev)=> ({ ...prev, edad: cat.edad + 1 }))
+        // catSet((prev)=> ({ ...prev, edad: cat.edad + 1 }))
     }
 
     

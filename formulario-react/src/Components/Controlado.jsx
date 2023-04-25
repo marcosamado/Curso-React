@@ -9,14 +9,19 @@ const Controlado = () => {
     const [datosForm, setDatosForm] = useState({
         title: "",
         description: "",
-        state: "pendiente"
+        state: "pendiente",
+        priority: false
     })
     
     const accionSubmit = (event) => {
         event.preventDefault();
-
         console.log(datosForm)
+     };
 
+     const accionChange = (event) => {
+        setDatosForm({...datosForm, [event.target.name]: event.target.type === "checkbox" ? event.target.checked : event.target.value})
+        // console.log(event.target.name)
+        // console.log(event.target.value)
      }
 
     return (
@@ -28,7 +33,8 @@ const Controlado = () => {
             placeholder="Ingrese Tarea"
             className="form-control mb-2"
             value={datosForm.title}
-            onChange={event => setDatosForm({...datosForm, title: event.target.value})}
+            onChange={accionChange}
+            // onChange={event => setDatosForm({...datosForm, title: event.target.value})}
             />
             
             <textarea
@@ -36,14 +42,26 @@ const Controlado = () => {
             placeholder="Ingrese Descripcion"
             name="description"
             value={datosForm.description}
-            onChange={event => setDatosForm({...datosForm, description: event.target.value})}
+            onChange={accionChange}
+            // onChange={event => setDatosForm({...datosForm, description: event.target.value})}
             />
-            
+            <div className="form-check mb-2">
+                <input
+                type="checkbox"
+                className="form-check-input"
+                name="priority"
+                id="input-check"
+                checked={datosForm.priority}
+                onChange={accionChange}
+                />
+                <label htmlFor="input-check">Dar Prioridad</label>
+            </div>
             <select
                 className="form-control mb-2"
                 name="state"
                 value={datosForm.state}
-                onChange={event => setDatosForm({...datosForm, state: event.target.value})}
+                onChange={accionChange}
+                // onChange={event => setDatosForm({...datosForm, state: event.target.value})}
                 >
                 <option value="pendiente">Pendiente</option>
                 <option value="completado">Completado</option>
