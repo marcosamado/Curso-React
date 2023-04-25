@@ -6,20 +6,33 @@ const Controlado = () => {
     // const [description, setDescription] = useState("");
     // const [state, setState] = useState("pendiente");
 
+    const [error, setError] = useState("")
+
     const [datosForm, setDatosForm] = useState({
         title: "",
         description: "",
         state: "pendiente",
         priority: false
     })
+    const {title, description, state, priority} = datosForm;
     
     const accionSubmit = (event) => {
         event.preventDefault();
+        setError("");
+        
+        if(!title.trim() || !description.trim()) {
+            return setError("Rellene todos los campos");
+        }; 
         console.log(datosForm)
      };
 
      const accionChange = (event) => {
-        setDatosForm({...datosForm, [event.target.name]: event.target.type === "checkbox" ? event.target.checked : event.target.value})
+
+        const  {name, type, checked, value} = event.target;
+        setDatosForm({
+            ...datosForm, [name] : type === "checkbox" ? checked : value
+            // [event.target.name]: event.target.type === "checkbox" ? event.target.checked : event.target.value
+        })
         // console.log(event.target.name)
         // console.log(event.target.value)
      }
@@ -32,7 +45,7 @@ const Controlado = () => {
             name="title"
             placeholder="Ingrese Tarea"
             className="form-control mb-2"
-            value={datosForm.title}
+            value={title}
             onChange={accionChange}
             // onChange={event => setDatosForm({...datosForm, title: event.target.value})}
             />
@@ -41,7 +54,7 @@ const Controlado = () => {
             className="form-control mb-2"
             placeholder="Ingrese Descripcion"
             name="description"
-            value={datosForm.description}
+            value={description}
             onChange={accionChange}
             // onChange={event => setDatosForm({...datosForm, description: event.target.value})}
             />
@@ -51,7 +64,7 @@ const Controlado = () => {
                 className="form-check-input"
                 name="priority"
                 id="input-check"
-                checked={datosForm.priority}
+                checked={priority}
                 onChange={accionChange}
                 />
                 <label htmlFor="input-check">Dar Prioridad</label>
@@ -59,7 +72,7 @@ const Controlado = () => {
             <select
                 className="form-control mb-2"
                 name="state"
-                value={datosForm.state}
+                value={state}
                 onChange={accionChange}
                 // onChange={event => setDatosForm({...datosForm, state: event.target.value})}
                 >
@@ -68,6 +81,14 @@ const Controlado = () => {
             </select>
             
             <button type="submit" className="btn btn-success">Procesar</button>
+            {
+                error !== "" && <p className="mt-5 p-3 border border-danger">{error}</p>
+            }
+
+            <div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+            </div>
         </form>
     )
 }
