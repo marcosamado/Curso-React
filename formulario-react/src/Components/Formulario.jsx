@@ -1,7 +1,7 @@
 import { useState } from "react";
-import TarjetaTarea from "./TarjetaTarea";
+import Swal from "sweetalert2";
 
-const Formulario = () => { 
+const Formulario = ({agregarTarea}) => { 
     
     // const [title, setTitle] = useState("");
     // const [description, setDescription] = useState("");
@@ -22,10 +22,19 @@ const Formulario = () => {
         setError("");
         
         if(!title.trim() || !description.trim()) {
-            return setError("Rellene todos los campos");
+            return Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Rellena todos los campos',
+                    })
         }; 
-        console.log(datosForm)
 
+        agregarTarea({
+            ...datosForm,
+            id: Date.now(),
+            state: state === "completado" ? true : false,
+            prioroty: priority === "checked" ? true : false
+        })
      };
 
      const accionChange = (event) => {
@@ -35,8 +44,6 @@ const Formulario = () => {
             ...datosForm, [name] : type === "checkbox" ? checked : value
             // [event.target.name]: event.target.type === "checkbox" ? event.target.checked : event.target.value
         })
-        // console.log(event.target.name)
-        // console.log(event.target.value)
      }
 
     return (
@@ -47,21 +54,21 @@ const Formulario = () => {
                 type="text"
                 name="title"
                 placeholder="Ingrese Tarea"
-                className="form-control mb-2"
+                className="form-control mb-3"
                 value={title}
                 onChange={accionChange}
                 // onChange={event => setDatosForm({...datosForm, title: event.target.value})}
                 />
                 
                 <textarea
-                className="form-control mb-2"
+                className="form-control mb-3"
                 placeholder="Ingrese Descripcion"
                 name="description"
                 value={description}
                 onChange={accionChange}
                 // onChange={event => setDatosForm({...datosForm, description: event.target.value})}
                 />
-                <div className="form-check mb-2">
+                <div className="form-check mb-3">
                     <input
                     type="checkbox"
                     className="form-check-input"
@@ -73,7 +80,7 @@ const Formulario = () => {
                     <label htmlFor="input-check">Dar Prioridad</label>
                 </div>
                 <select
-                    className="form-control mb-2"
+                    className="form-control mb-3"
                     name="state"
                     value={state}
                     onChange={accionChange}
@@ -83,13 +90,11 @@ const Formulario = () => {
                     <option value="completado">Completado</option>
                 </select>
                 
-                <button type="submit" className="btn btn-success">Procesar</button>
+                <button type="submit" className="btn btn-success mb-2">Procesar</button>
                 {
                     error !== "" && <p className="mt-5 p-3 border border-danger">{error}</p>
                 }
-                <TarjetaTarea titulo={title} descripcion={description}/>
             </form>
-            
         </>
     )
 }
