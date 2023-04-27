@@ -7,7 +7,7 @@ const Formulario = ({agregarTarea}) => {
     // const [description, setDescription] = useState("");
     // const [state, setState] = useState("pendiente");
 
-    const [error, setError] = useState("")
+    // const [error, setError] = useState("")
 
     const [datosForm, setDatosForm] = useState({
         title: "",
@@ -19,9 +19,11 @@ const Formulario = ({agregarTarea}) => {
     
     const accionSubmit = (event) => {
         event.preventDefault();
-        setError("");
+        // setError("");
+        
         
         if(!title.trim() || !description.trim()) {
+            // return setError("hay un errorcito")
             return Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -29,23 +31,35 @@ const Formulario = ({agregarTarea}) => {
                     })
         }; 
 
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Tarea agregada con exito',
+            showConfirmButton: false,
+            timer: 1500
+          })
         agregarTarea({
             ...datosForm,
             id: Date.now(),
-            state: state === "completado" ? true : false,
-            prioroty: priority === "checked" ? true : false
+            state: state === "completado" ? true : false
+        })
+        setDatosForm({
+            title: "",
+            description: "",
+            state: "pendiente",
+            priority: false
         })
      };
 
      const accionChange = (event) => {
-
+        
         const  {name, type, checked, value} = event.target;
         setDatosForm({
             ...datosForm, [name] : type === "checkbox" ? checked : value
             // [event.target.name]: event.target.type === "checkbox" ? event.target.checked : event.target.value
         })
      }
-
+     
     return (
         <>
             <form onSubmit={accionSubmit} className="form-control mt-5">
@@ -91,9 +105,9 @@ const Formulario = ({agregarTarea}) => {
                 </select>
                 
                 <button type="submit" className="btn btn-success mb-2">Procesar</button>
-                {
+                {/* {
                     error !== "" && <p className="mt-5 p-3 border border-danger">{error}</p>
-                }
+                } */}
             </form>
         </>
     )

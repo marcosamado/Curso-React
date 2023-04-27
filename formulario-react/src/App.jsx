@@ -27,6 +27,7 @@ const App = () => {
   const agregarTareaNueva = (nuevaTarea) => {
     setTareas([...tarea, nuevaTarea])
   }
+
   
   return (
     <>
