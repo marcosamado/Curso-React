@@ -5,7 +5,7 @@ const TarjetaTarea = ({tareas}) => {
 
 
     return (
-        <div className="my-5 list-group">
+        <div className="my-5  list-group">
             <h2 className="text-center mb-3"> Tareas </h2>
             <ul className="p-0  list-unstyled">
                 {
