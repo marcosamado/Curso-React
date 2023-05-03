@@ -1,18 +1,20 @@
 import Tarea from "./Tarea";
 
-const TarjetaTarea = ({tareas}) => {
+const TarjetaTarea = ({tareas, eliminarTarea, actualizarTarea}) => {
 
 
 
     return (
         <div className="my-5  list-group">
-            <h2 className="text-center mb-3"> Tareas </h2>
+            <h2 className="text-center mb-3 mt-4"> Tareas </h2>
             <ul className="p-0  list-unstyled">
                 {
                     tareas.map((tarea) => (
-                        // <li className="list-group-item list-group-item-primary mb-3" key={tarea.id}> {tarea.title} - {tarea.description}</li>
-                        <Tarea key={tarea.id} tareas={tarea}/>
+                        <Tarea key={tarea.id} tareas={tarea} eliminarTarea={eliminarTarea} actualizarTarea={actualizarTarea}/>
                     ))  
+                }
+                {
+                    tareas.length === 0 && <li className="list-group-item list-group-item-dark text-center">No hay tareas</li>
                 }
             </ul>
         </div>
