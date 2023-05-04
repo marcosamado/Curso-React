@@ -1,17 +1,17 @@
-import NoControlado from "./Components/NoControlado";
+// import NoControlado from "./Components/NoControlado";
 import Formulario from "./Components/Formulario";
 import TarjetaTarea from "./Components/TarjetaTarea";
 import { useEffect, useState } from "react";
 
-const initialState = [];
+const initialState = JSON.parse(localStorage.getItem("tareasnp")) || [];
 
 const App = () => {
 
   const [tarea, setTareas] = useState(initialState)
 
   useEffect(() => {
-    console.log("useEffect");
-  })
+    localStorage.setItem("tareas", JSON.stringify(tarea));
+  }, [tarea])
 
   const agregarTareaNueva = (nuevaTarea) => {
     setTareas([...tarea, nuevaTarea])
