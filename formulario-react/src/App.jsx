@@ -3,7 +3,7 @@ import Formulario from "./Components/Formulario";
 import TarjetaTarea from "./Components/TarjetaTarea";
 import { useEffect, useState } from "react";
 
-const initialState = JSON.parse(localStorage.getItem("tareasnp")) || [];
+const initialState = JSON.parse(localStorage.getItem("tareas")) || [];
 
 const App = () => {
 

@@ -29,7 +29,7 @@ const Formulario = ({agregarTarea}) => {
                         title: 'Oops...',
                         text: 'Rellena todos los campos',
                     })
-        }; 
+        } 
 
         Swal.fire({
             position: 'center',
