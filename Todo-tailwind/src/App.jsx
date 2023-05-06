@@ -10,7 +10,9 @@ const App = () => {
                         <h1 className=" text-3xl font-semibold uppercase tracking-[0.4em] text-white">
                             Todo
                         </h1>
-                        <button className="">{<MoonIcon />}</button>
+                        <button className="">
+                            {<MoonIcon color="white" />}
+                        </button>
                     </div>
                     <form className="mb-5 mt-8 flex items-center gap-2 overflow-hidden rounded-md bg-white px-5 py-3.5">
                         <span className=" inline-block h-5 w-5 rounded-full border-2 border-slate-200"></span>
@@ -22,6 +24,20 @@ const App = () => {
                     </form>
                 </header>
                 <main className="container mx-auto px-6">
+                    <article className="flex gap-2 rounded-md border-2 border-slate-200 bg-white px-4 py-3.5">
+                        <button className="h-5 w-5 flex-none rounded-full border-2 border-slate-200"></button>
+                        <p className="grow pt-0.5 text-xs font-bold text-gray-600">
+                            Complete online JavaScript Curse
+                        </p>
+                        <button className="flex-none">{<CrossIcon />}</button>
+                    </article>
+                    <article className="flex gap-2 rounded-md border-2 border-slate-200 bg-white px-4 py-3.5">
+                        <button className="h-5 w-5 flex-none rounded-full border-2 border-slate-200"></button>
+                        <p className="grow pt-0.5 text-xs font-bold text-gray-600">
+                            Complete online JavaScript Curse
+                        </p>
+                        <button className="flex-none">{<CrossIcon />}</button>
+                    </article>
                     <article className="flex gap-2 rounded-md border-2 border-slate-200 bg-white px-4 py-3.5">
                         <button className="h-5 w-5 flex-none rounded-full border-2 border-slate-200"></button>
                         <p className="grow pt-0.5 text-xs font-bold text-gray-600">
