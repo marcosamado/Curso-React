@@ -49,7 +49,8 @@ const App = () => {
 
         <h1 className="my-5">Formulario Controlado</h1>
         <Formulario agregarTarea={agregarTareaNueva}/>
-
+        <Formulario agregarTarea={agregarTareaNueva}/>
+        <TarjetaTarea tareas={ordenarTareas(tarea)} eliminarTarea={eliminarTarea} actualizarTarea={actualizarTarea}/>
         <TarjetaTarea tareas={ordenarTareas(tarea)} eliminarTarea={eliminarTarea} actualizarTarea={actualizarTarea}/>
       </div>
     </>
