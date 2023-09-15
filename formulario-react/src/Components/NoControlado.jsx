@@ -14,13 +14,14 @@ const NoControlado = () => {
         // CAPTURAMOS LOS DATOS
         const data = new FormData(form.current);
         
-        // const data2 = data.entries().next().value;
+        //const data2 = data.entries().next().value;
         // esto es lo que hace el spread ... operator 
-        console.log(...data.entries());
-
+        // console.log(...data.entries());
+        // console.log(data.entries().next());
+        
         
         const dataObject = Object.fromEntries([...data.entries()]);
-        // console.log(dataObject);
+        console.log(dataObject);
 
         const {title, description, state} = dataObject;
         // console.log(title,description,state);

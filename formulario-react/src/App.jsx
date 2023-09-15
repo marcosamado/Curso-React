@@ -2,6 +2,7 @@
 import Formulario from "./Components/Formulario";
 import TarjetaTarea from "./Components/TarjetaTarea";
 import { useEffect, useState } from "react";
+import NoControlado from "./Components/NoControlado";
 
 const initialState = JSON.parse(localStorage.getItem("tareas")) || [];
 
@@ -44,11 +45,11 @@ const App = () => {
   return (
     <>
       <div className="container">
-        {/* <h1>Formulario No Controlado</h1>
-        <NoControlado /> */}
+        <h1>Formulario No Controlado</h1>
+        <NoControlado />
 
         <h1 className="my-5">Formulario Controlado</h1>
-        <Formulario agregarTarea={agregarTareaNueva}/>
+        {/* <Formulario agregarTarea={agregarTareaNueva}/> */}
 
         <TarjetaTarea tareas={ordenarTareas(tarea)} eliminarTarea={eliminarTarea} actualizarTarea={actualizarTarea}/>
       </div>

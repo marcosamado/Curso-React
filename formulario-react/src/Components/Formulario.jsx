@@ -37,7 +37,7 @@ const Formulario = ({agregarTarea}) => {
             title: 'Tarea agregada con exito',
             showConfirmButton: false,
             timer: 1500
-          })
+        })
         agregarTarea({
             ...datosForm,
             id: Date.now(),
@@ -49,17 +49,17 @@ const Formulario = ({agregarTarea}) => {
             state: "pendiente",
             priority: false
         })
-     };
+    };
 
-     const accionChange = (event) => {
+    const accionChange = (event) => {
         
         const  {name, type, checked, value} = event.target;
         setDatosForm({
             ...datosForm, [name] : type === "checkbox" ? checked : value
             // [event.target.name]: event.target.type === "checkbox" ? event.target.checked : event.target.value
         })
-     }
-     
+    }
+    
     return (
         <>
             <form onSubmit={accionSubmit} className="form-control mt-5">
