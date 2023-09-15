@@ -7,54 +7,61 @@ import NoControlado from "./Components/NoControlado";
 const initialState = JSON.parse(localStorage.getItem("tareas")) || [];
 
 const App = () => {
+    const [tarea, setTareas] = useState(initialState);
 
-  const [tarea, setTareas] = useState(initialState)
+    useEffect(() => {
+        localStorage.setItem("tareas", JSON.stringify(tarea));
+    }, [tarea]);
 
-  useEffect(() => {
-    localStorage.setItem("tareas", JSON.stringify(tarea));
-  }, [tarea])
+    const agregarTareaNueva = (nuevaTarea) => {
+        setTareas([...tarea, nuevaTarea]);
+    };
 
-  const agregarTareaNueva = (nuevaTarea) => {
-    setTareas([...tarea, nuevaTarea])
-  }
+    const eliminarTarea = (id) => {
+        const nuevoArreglo = tarea.filter((tarea) => tarea.id !== id);
+        setTareas(nuevoArreglo);
+    };
 
-  const eliminarTarea = (id) => {
-    const nuevoArreglo = tarea.filter(tarea => tarea.id !== id)
-  setTareas(nuevoArreglo);
-  };
+    const actualizarTarea = (id) => {
+        const nuevoArreglo = tarea.map((tarea) => {
+            if (tarea.id === id) {
+                tarea.state = !tarea.state;
+            }
+            return tarea;
+        });
+        setTareas(nuevoArreglo);
+    };
 
-  const actualizarTarea = (id) => {
-    const nuevoArreglo = tarea.map(tarea => {
-      if(tarea.id === id){
-        tarea.state = !tarea.state;
-      }
-      return tarea;
-    });
-    setTareas(nuevoArreglo);
-  };
+    const ordenarTareas = (arregloTareas) => {
+        return arregloTareas.sort((a, b) => {
+            if (a.priority === b.priority) return 0;
+            if (a.priority) return -1;
+            if (!a.priority) return 1;
+        });
+    };
 
-  const ordenarTareas = (arregloTareas) => {
-    return arregloTareas.sort((a,b) => {
-      if(a.priority === b.priority) return 0;
-      if(a.priority) return -1;
-      if(!a.priority) return 1;
-    });
-  };
+    return (
+        <>
+            <div className="container">
+                <h1>Formulario No Controlado</h1>
+                <NoControlado />
 
-  
-  return (
-    <>
-      <div className="container">
-        <h1>Formulario No Controlado</h1>
-        <NoControlado />
-
-        <h1 className="my-5">Formulario Controlado</h1>
-        {/* <Formulario agregarTarea={agregarTareaNueva}/> */}
-
-        <TarjetaTarea tareas={ordenarTareas(tarea)} eliminarTarea={eliminarTarea} actualizarTarea={actualizarTarea}/>
-      </div>
-    </>
-  )
-}
+                <h1 className="my-5">Formulario Controlado</h1>
+                <Formulario agregarTarea={agregarTareaNueva} />
+                <Formulario agregarTarea={agregarTareaNueva} />
+                <TarjetaTarea
+                    tareas={ordenarTareas(tarea)}
+                    eliminarTarea={eliminarTarea}
+                    actualizarTarea={actualizarTarea}
+                />
+                <TarjetaTarea
+                    tareas={ordenarTareas(tarea)}
+                    eliminarTarea={eliminarTarea}
+                    actualizarTarea={actualizarTarea}
+                />
+            </div>
+        </>
+    );
+};
 
 export default App;
