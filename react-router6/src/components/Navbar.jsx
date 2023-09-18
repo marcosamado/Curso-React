@@ -1,19 +1,21 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
     return (
         <div className="navbar navbar-dark bg-dark">
             <div className="container">
-                <a href="/" className="btn btn-outline-primary">
+                <Link to="/" className="btn btn-outline-primary">
                     Inicio
-                </a>
-                <a href="/" className="btn btn-outline-primary">
+                </Link>
+                <Link to="/nosotros" className="btn btn-outline-primary">
                     Nosotros
-                </a>
-                <a href="/" className="btn btn-outline-primary">
+                </Link>
+                <Link to="/contacto" className="btn btn-outline-primary">
                     Contacto
-                </a>
-                <a href="/" className="btn btn-outline-primary">
+                </Link>
+                <Link to="/blog" className="btn btn-outline-primary">
                     Blog
-                </a>
+                </Link>
             </div>
         </div>
     );
