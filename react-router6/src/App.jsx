@@ -1,11 +1,10 @@
-import Navbar from "./components/Navbar";
-
 import { Routes, Route } from "react-router-dom";
 import Inicio from "./pages/Inicio";
 import Contacto from "./pages/Contacto";
 import Nosotros from "./pages/Nosotros";
 import Blog from "./pages/Blog";
 import Layout from "./Layouts/Layout";
+import NotFound from "./pages/NotFound";
 
 function App() {
     return (
@@ -17,6 +16,7 @@ function App() {
                     <Route path="/contacto" element={<Contacto />} />
                     <Route path="/blog" element={<Blog />} />
                 </Route>
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </>
     );

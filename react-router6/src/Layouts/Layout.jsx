@@ -6,6 +6,7 @@ const Layout = () => {
         <>
             <Navbar />
             <Outlet />
+            <footer>Este es el footer</footer>
         </>
     );
 };
