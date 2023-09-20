@@ -5,6 +5,7 @@ import Nosotros from "./pages/Nosotros";
 import Blog from "./pages/Blog";
 import Layout from "./Layouts/Layout";
 import NotFound from "./pages/NotFound";
+import Post from "./pages/Post";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                     <Route path="/nosotros" element={<Nosotros />} />
                     <Route path="/contacto" element={<Contacto />} />
                     <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:id" element={<Post />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>
