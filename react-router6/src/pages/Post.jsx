@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useFetchData } from "../hooks/useFetchData";
 
 const Post = () => {
@@ -15,6 +15,7 @@ const Post = () => {
         <>
             <h2>{data.title}</h2>
             <p>{data.body}</p>
+            <Link to="/blog">Volver</Link>
         </>
     );
 };
