@@ -18,7 +18,13 @@ const Blog = () => {
     if (error) return <p>Error......</p>;
 
     const handleChange = (e) => {
-        setSearchParams({ filter: e.target.value });
+        let filter = e.target.value;
+
+        if (filter) {
+            setSearchParams({ filter: filter });
+        } else {
+            setSearchParams({});
+        }
     };
 
     return (
@@ -31,13 +37,20 @@ const Blog = () => {
                 value={searchParams.get("filter") || ""}
             />
             <ul className="list-group">
-                {data.map((item) => (
-                    <li className="list-group-item" key={item.id}>
-                        <Link to={`/blog/${item.id}`} key={item.id}>
-                            {item.title}
-                        </Link>
-                    </li>
-                ))}
+                {data
+                    .filter((item) => {
+                        let filter = searchParams.get("filter");
+                        if (!filter) return true;
+                        let name = item.title.toLowerCase();
+                        return name.startsWith(filter.toLocaleLowerCase());
+                    })
+                    .map((item) => (
+                        <li className="list-group-item" key={item.id}>
+                            <Link to={`/blog/${item.id}`} key={item.id}>
+                                {item.title}
+                            </Link>
+                        </li>
+                    ))}
             </ul>
         </div>
     );
