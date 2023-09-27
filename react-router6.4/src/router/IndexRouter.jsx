@@ -11,25 +11,29 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <LayoutPublic />,
-        errorElement: <NotFound />,
         children: [
             {
-                index: true,
-                element: <HomePage />,
-            },
-            {
-                path: "/about",
-                element: <AboutPage />,
-            },
-            {
-                path: "/blog",
-                element: <BlogPage />,
-                loader: loaderBlogs,
-            },
-            {
-                path: "/blog/:id",
-                element: <PostPage />,
-                loader: loaderPost,
+                errorElement: <NotFound />,
+                children: [
+                    {
+                        index: true,
+                        element: <HomePage />,
+                    },
+                    {
+                        path: "/about",
+                        element: <AboutPage />,
+                    },
+                    {
+                        path: "/blog",
+                        element: <BlogPage />,
+                        loader: loaderBlogs,
+                    },
+                    {
+                        path: "/blog/:id",
+                        element: <PostPage />,
+                        loader: loaderPost,
+                    },
+                ],
             },
         ],
     },
